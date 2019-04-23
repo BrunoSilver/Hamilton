@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Hello Spring Boot</title>
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />
+</head>
+<body>
+	<h1>Previsões para São Paulo</h1>
+		<table class="table">
+			<thead>
+				<tr>
+				<th>Dia</th>
+				<th>Temperatura mínima</th>
+				<th>Temperatura máxima</th>
+				<th>Humidade relativa do ar</th>
+				<th>Descrição</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="tempo : ${tempos}">
+				<td th:text="${tempo.nome}"></td>
+				<td th:text="${tempo.tmax}"></td>
+				<td th:text="${tempo.tmin}"></td>
+				<td th:text="${tempo.humidade}"></td>
+				<td th:text="${tempo.descricao}"></td>
+				</tr>
+			</tbody>
+		</table>
+</body>
+</html>

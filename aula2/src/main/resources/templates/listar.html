@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Hello Spring Boot</title>
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />
+</head>
+<body>
+	<h1>Previsões para São Paulo</h1>
+		<table class="table">
+			<thead>
+				<tr>
+				<th>Dia</th>
+				<th>Temperatura mínima</th>
+				<th>Temperatura máxima</th>
+				<th>Humidade relativa do ar</th>
+				<th>Descrição</th>
+				<th>Data</th>
+				<th>Latitude</th>
+				<th>Longitude</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="tempo : ${tempos}">
+				<td th:text="${tempo.nome}"></td>
+				<td th:text="${tempo.tmax}"></td>
+				<td th:text="${tempo.tmin}"></td>
+				<td th:text="${tempo.humidade}"></td>
+				<td th:text="${tempo.descricao}"></td>
+				<td th:text="${tempo.data}"></td>
+				<td th:text="${tempo.latitude}"></td>
+				<td th:text="${tempo.longitude}"></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<form class="form-inline" method="POST" th:object="${tempo}" th:action="@{/listar}" style="margin: 20px 0">
+			<input type="text" class="form-control" placeholder="Nome" th:field="*{nome}"/>
+			<input type="number" class="form-control" placeholder="Temperatura máxima" th:field="*{tmax}"/>
+			<input type="number" class="form-control" placeholder="Temepratura mínima" th:field="*{tmin}"/>
+			<input type="number" class="form-control" placeholder="Humidade" th:field="*{humidade}"/>
+			<input type="text" class="form-control" placeholder="Descrição" th:field="*{descricao}"/>
+			<input type="date" class="form-control" placeholder="Data" th:field="*{data}"/>
+			<input type="number" class="form-control" placeholder="Latitude" th:field="*{latitude}"/>
+			<input type="number" class="form-control" placeholder="Longitude" th:field="*{longitude}"/>
+			<button type="submit" class="btn btn-primary">Adicionar</button>
+		</form>
+</body>
+</html>
